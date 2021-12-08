@@ -57,7 +57,7 @@ test("Validation date", () => {
   expect(result.date).toBe(resultado);
 });
 
-describe("Validation illegal arguments", () => {
+describe("Validation illegal arguments #1", () => {
   test("hours", () => {
     const hour = () => {
       createEvent("mon", 10, 14, 11);
@@ -79,6 +79,15 @@ describe("Validation illegal arguments", () => {
     expect(weekday).toThrow();
   });
 });
+
+test("Validation illegal arguments #2", () => {
+  expect(() => createEvent("mon", 10, 14, 11)).toThrow(Error);
+
+  expect(() => createEvent("mon", -1, 11, 14)).toThrow(Error);
+
+  expect(() => createEvent("AAA", 5, 11, 14)).toThrow(Error);
+});
+
 
 test("create an event list of at least 10 events", () => {
   const List = [
